@@ -2,6 +2,8 @@
 from flask import Flask
 import cf_deployment_tracker
 import os
+import requests 
+import json
 
 # Emit Bluemix deployment event
 cf_deployment_tracker.track()
