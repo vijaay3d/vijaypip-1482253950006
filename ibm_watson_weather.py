@@ -1,21 +1,12 @@
 # Using the IBM Bluemix Weather Company API
 # Bruce Elgort
 # July 9, 2016
-#Version 1.0
+# Version 1.0
 # IBM Weather Company Docs: https://console.ng.bluemix.net/docs/services/Weather/weather_rest_apis.html#rest_apis
 
 import requests 
 import json
-import os
-from flask import Flask, jsonify
 
-app = Flask(__name__)
-
-@app.route('/')
-def Welcome():
-    return app.send_static_file('index.html')
-
-@app.route('/api/zip')
 def get_weather(zip):
     username = '909eebc9-780a-4af9-bd5c-44baaa854d50'
     password = '200T8xvi5B'
