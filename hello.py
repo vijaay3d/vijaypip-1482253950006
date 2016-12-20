@@ -28,11 +28,11 @@ def hello_world():
             results_json = json.loads(str(results))
             print()
             print('Here is the weather for {0}'.format(results_json['observation']['obs_name']))
-            print('{0:20} {1:<10}'.format('Current Temperature:',str(results_json['observation']['temp']) + '° and ' + results_json['observation']['wx_phrase']))
-            print('{0:20} {1:<10}'.format('Feels Like: ',str(results_json['observation']['feels_like']) + '°'))
-            print('{0:20} {1:<10}'.format('Low Temp: ',str(results_json['observation']['min_temp']) + '°'))
-            print('{0:20} {1:<10}'.format('High Temp: ',str(results_json['observation']['max_temp']) + '°'))
-            print('{0:20} {1:<10}'.format('Winds:',str(results_json['observation']['wspd']) + ' mph coming from the ' + results_json['observation']['wdir_cardinal']))
+            print('{0:20} {1:<10}'.format('Current Temperature:', str(results_json['observation']['temp']) + ' and ' + results_json['observation']['wx_phrase']))
+            print('{0:20} {1:<10}'.format('Feels Like: ', str(results_json['observation']['feels_like']) + ' '))
+            print('{0:20} {1:<10}'.format('Low Temp: ', str(results_json['observation']['min_temp']) + ' '))
+            print('{0:20} {1:<10}'.format('High Temp: ', str(results_json['observation']['max_temp']) + ' '))
+            print('{0:20} {1:<10}'.format('Winds:', str(results_json['observation']['wspd']) + ' mph coming from the ' + results_json['observation']['wdir_cardinal']))
         else:
             print('Something went wrong :-(')
     except:
