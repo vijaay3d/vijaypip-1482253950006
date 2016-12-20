@@ -16,10 +16,10 @@ port = int(os.getenv('VCAP_APP_PORT', 8080))
 
 
 @app.route('/')
-def get_weather(zip):
+def hello_world():
     username = '909eebc9-780a-4af9-bd5c-44baaa854d50'
     password = '200T8xvi5B'
-
+    zip = '75034'
     watsonUrl = 'https://twcservice.mybluemix.net/api/weather/v1/location/' + zip + ':4:US' + '/observations.json?language=en-US'
     try:
         r = requests.get(watsonUrl,auth=(username,password))
