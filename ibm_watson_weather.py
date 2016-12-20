@@ -6,7 +6,16 @@
 
 import requests 
 import json
+import os
+from flask import Flask, jsonify
 
+app = Flask(__name__)
+
+@app.route('/')
+def Welcome():
+    return app.send_static_file('index.html')
+
+@app.route('/api/zip')
 def get_weather(zip):
     username = '909eebc9-780a-4af9-bd5c-44baaa854d50'
     password = '200T8xvi5B'
