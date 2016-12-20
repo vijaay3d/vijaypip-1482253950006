@@ -1,8 +1,7 @@
+---
 applications:
-- path: .
+- name: hello-world-flask
+  host: hello-world-flask-${random-word}
   memory: 128M
   instances: 1
-  domain: mybluemix.net
-  name: vijaypip
-  host: vijaypip
-  disk_quota: 1024M
+  path: .

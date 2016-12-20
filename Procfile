@@ -1,1 +1,1 @@
-web: python ibm_watson_weather.py
+web: python hello.py
