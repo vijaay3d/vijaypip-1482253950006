@@ -16,8 +16,19 @@ port = int(os.getenv('VCAP_APP_PORT', 8080))
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello World! I am running on port ' + str(port)
+def get_weather(zip):
+    username = '909eebc9-780a-4af9-bd5c-44baaa854d50'
+    password = '200T8xvi5B'
+
+    watsonUrl = 'https://twcservice.mybluemix.net/api/weather/v1/location/' + zip + ':4:US' + '/observations.json?language=en-US'
+    try:
+        r = requests.get(watsonUrl,auth=(username,password))
+        return r.text
+    except:
+        return False
+
+#def hello_world():
+#    return 'Hello World! I am running on port ' + str(port)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
