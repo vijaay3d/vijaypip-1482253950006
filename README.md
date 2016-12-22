@@ -1,112 +1,77 @@
-# Hello World Python Flask
+## Watson Developer Cloud Python SDK
+[![Build Status](https://travis-ci.org/watson-developer-cloud/python-sdk.svg)](https://travis-ci.org/watson-developer-cloud/python-sdk)
+[![codecov.io](https://codecov.io/github/watson-developer-cloud/python-sdk/coverage.svg?branch=master)](https://codecov.io/github/watson-developer-cloud/python-sdk?branch=master)
+[![Latest Stable Version](https://img.shields.io/pypi/v/watson-developer-cloud.svg)](https://pypi.python.org/pypi/watson-developer-cloud)
+[![Download Times](https://img.shields.io/pypi/dm/watson-developer-cloud.svg)](https://pypi.python.org/pypi/watson-developer-cloud)
 
-This is a sample application showing how to deploy a simple Flask-based hello world app using Cloud Foundry and the Python buildpack.
+Python client library to quickly get started with the various [Watson Developer Cloud][wdc] services.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/python-hello-world-flask.git)
+## Installation
 
-![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/4f7252bee5e6aa6f1611b130ee63dd98/badge.svg)
+To install, use `pip` or `easy_install`:
 
-## Running the app on Bluemix
+```bash
+$ pip install --upgrade watson-developer-cloud
+```
+or
+```bash
+$ easy_install --upgrade watson-developer-cloud
+```
 
-1. If you do not already have a Bluemix account, [sign up here][bluemix_signup_url]
+## Examples
+The [examples][examples] folder has basic and advanced examples.
 
-2. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
+## Getting the Service Credentials
+Service credentials are required to access the APIs.
 
-3. Clone the app to your local environment from your terminal using the following command:
+If you run your app in Bluemix, you don't need to specify the username and password. In that case, the SDK uses the `VCAP_SERVICES` environment variable to load the credentials.
 
-  ```
-  $ git clone https://github.com/IBM-Bluemix/python-hello-world-flask.git
-  ```
+To run locally or outside of Bluemix you need the `username` and `password` credentials for each service. (Service credentials are different from your Bluemix account email and password.)
 
-4. `cd` into this newly created directory
+To create an instance of the service:
 
-5. Connect to Bluemix in the command line tool and follow the prompts to log in.
+1. Log in to [Bluemix][bluemix].
+1. Create an instance of the service:
+   1. In the Bluemix **Catalog**, select the Watson service you want to use. For example, select the Conversation service.
+   1. Type a unique name for the service instance in the **Service name** field. For example, type `my-service-name`. Leave the default values for the other options.
+   1. Click **Create**.
 
-  ```
-  $ cf api https://api.ng.bluemix.net
-  $ cf login
-  ```
+To get your service credentials:
 
-6. Push the app to Bluemix.
+Copy your credentials from the **Service details** page. To find the the Service details page for an existing service, navigate to your Bluemix dashboard and click the service name.
 
-  ```
-  $ cf push
-  ```
+1. On the **Service Details** page, click **Service Credentials**, and then **View credentials**.
+1. Copy `username` and `password`.
 
-And voila! You now have your very own instance of the Python Hello World sample app running on Bluemix.
+## Python Version
+Tested 👌 (lightly) on: Python from 2.7 to 3.5-dev (development branch).
+Python 2.6 is partially supported but generates InsecurePlatformWarnings (and other warnings), which can be ignored.
 
-## Run the app locally
-1. If you do not already have a Bluemix account, [sign up here][bluemix_signup_url]
+## CHANGELOG
+See [CHANGELOG][CHANGELOG.md].
 
-2. If you have not already, [download Python][download_python_url] and install it on your local machine. There are a number of best practices for developing locally with Python and we will leave the excersice of learning those up to you.
+## Known Issues
+There is a known incompatibility with this module with Python versions 3.x with Korean systems.
 
-3. Clone the app to your local environment from your terminal using the following command:
+## Dependencies
+* [requests]
+* [responses] for testing
 
-  ```
-  $ git clone https://github.com/IBM-Bluemix/python-hello-world-flask.git
-  ```
-
-4. `cd` into this newly created directory
-
-5. Create a new virtual environment with [virtualenv][virtualenv_url] and activate
-
-  ```
-  $ virtualenv venv
-  $ source venv/bin/activate
-  ```
-  
-6. Install the dependencies with pip
-
-  ```
-  $ pip install -r requirements.txt
-  ```
-
-7. Start your app locally with the following command
-
-  ```
-  $ python hello.py
-  ```
-
-This command will create a new Flask app and start your application. When your app has started, your console will print that your `Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)`.
-
-## Troubleshooting
-
-The primary source of debugging information for your Bluemix app is the logs. To see them, run the following command using the Cloud Foundry CLI:
-
-  ```
-  $ cf logs hello-world-flask --recent
-  ```
-For more detailed information on troubleshooting your application, see the [Troubleshooting section](https://www.ng.bluemix.net/docs/troubleshoot/troubleshoot.html) in the Bluemix documentation.
-
-## Contribute
-We are more than happy to accept external contributions to this project, be it in the form of issues and pull requests. If you find a bug, please report it via the [Issues section][issues_url] or even better, fork the project and submit a pull request with your fix! Pull requests will be evaulated on an individual basis based on value add to the sample application.
-
-## Privacy Notice
-
-The hello-world-flask sample web application includes code to track deployments to Bluemix and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM-Bluemix/cf-deployment-tracker-service) service on each deployment:
-
-* Python package version
-* Python repository URL
-* Application Name (`application_name`)
-* Space ID (`space_id`)
-* Application Version (`application_version`)
-* Application URIs (`application_uris`)
-* Labels of bound services
-* Number of instances for each bound service and associated plan information
-
-This data is collected from the `setup.py` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
-
-### Disabling Deployment Tracking
-
-Deployment tracking can be disabled by removing `cf_deployment_tracker.track()` from the `hello.py` file.
+## Contributing
+See [CONTRIBUTING.md][CONTRIBUTING].
 
 ## License
 
-This app is covered by the Apache 2.0 license. For more information, see [License.txt](License.txt) for license information.
+This library is licensed under the [Apache 2.0 license][license].
 
-[live_demo_url]: https://capital-weather.mybluemix.net/
-[bluemix_signup_url]: https://console.ng.bluemix.net/registration/
-[cloud_foundry_url]: https://github.com/cloudfoundry/cli
-[download_python_url]: https://www.python.org/downloads/
-[virtualenv_url]: https://virtualenv.pypa.io/en/stable/
-[issues_url]: https://github.com/IBM-Bluemix/python-hello-world-flask/issues
+[wdc]: http://www.ibm.com/watson/developercloud/
+[vcap_environment]: http://www.ibm.com/watson/developercloud/doc/getting_started/gs-variables.shtml
+[bluemix]: https://console.ng.bluemix.net
+[pytest]: http://pytest.org/latest/
+[responses]: https://github.com/getsentry/responses
+[requests]: http://docs.python-requests.org/en/latest/
+[examples]: https://github.com/watson-developer-cloud/python-sdk/tree/master/examples
+[CONTRIBUTING]: https://github.com/watson-developer-cloud/python-sdk/blob/master/CONTRIBUTING.md
+[CHANGELOG.md]: https://github.com/watson-developer-cloud/python-sdk/blob/master/CHANGELOG.md
+
+[license]: http://www.apache.org/licenses/LICENSE-2.0
